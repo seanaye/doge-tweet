@@ -15,7 +15,22 @@ public class GraphQLProvider {
 		this.graphQL = GraphQL.newGraphQL(graphQLSchema).build();
 	}
 
-	privvate GraphQLSchema buildSchema(String sdl) {
+	@Autowired
+	GraphQLDataFetchers graphQLDataFetchers;
 
+	private GraphQLSchema buildSchema(String sdl) {
+		TypeDefinitionRegistry = new SchemaParser().parse(sdl);
+		RuntimeWiring runtimeWiring = buildWiring();
+		SchemaGenerator schemaGenerator = new SchemaGenerator();
+		return schemaGenerator.makeExecutableSchema(typeRegistry, runtimeWiring);
+	}
+
+	private RuntimeWiring buildWiring() {
+		return RuntimeWiring.newRuntimeWiring()
+			.type(newTypeWiring("Query")
+					.dataFetcher("latestTweets", graphQLDataFetchers.getLatestTweetsFetcher()))
+			.type(newTypeWiring("Query")
+					.dataFetcher("timeSince", graphQLDataFetchers.getTimeSinceFetcher()))
+			.build();
 	}
 }
