@@ -1,29 +1,28 @@
 package com.graphqljava.dogetweet.doge;
 
+import java.io.File;
+import com.google.common.io.Resources;
+import com.google.common.base.Charsets;
 import org.springframework.stereotype.Component;
 import com.github.redouane59.twitter.TwitterClient;
 import com.github.redouane59.twitter.signature.TwitterCredentials;
+
+import java.io.IOException;
 
 @Component
 public class TweetClient {
 	private static TwitterClient client;
 
 	public TweetClient() {
-		String accessToken = System.getProperty("accessToken");
-		String accessTokenSecret = System.getProperty("accessTokenSecret");
-		String apiKey = System.getProperty("apiKey");
-		String apiSecret = System.getProperty("apiSecret");
-
-		System.out.println(apiSecret);
-		System.out.println(apiKey);
-
-		this.client = new TwitterClient(TwitterCredentials.builder()
-				.accessToken(accessToken)
-				.accessTokenSecret(accessTokenSecret)
-				.apiKey(apiKey)
-				.apiSecretKey(apiSecret)
-				.build());
+		try {
+			String json = Resources.toString(Resources.getResource("apiKeys.json"), Charsets.UTF_8);
+			this.client = new TwitterClient(TwitterClient.OBJECT_MAPPER
+				.readValue(json, TwitterCredentials.class));
+		} catch (IOException e) {
+			System.out.println("CANT READ API KEYS FILE");
+		}
 	}
+
 
 	public TwitterClient getClient() {
 		return client;
