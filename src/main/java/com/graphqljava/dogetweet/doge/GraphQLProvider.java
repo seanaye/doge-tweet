@@ -49,6 +49,8 @@ public class GraphQLProvider {
 		return RuntimeWiring.newRuntimeWiring()
 			.type(newTypeWiring("Query")
 					.dataFetcher("latestTweets", graphQLDataFetchers.getLatestTweetsFetcher()))
+			.type(newTypeWiring("Tweet")
+					.dataFetcher("user", graphQLDataFetchers.getUserByIdFetcher()))
 			.build();
 	}
 }
