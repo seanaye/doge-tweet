@@ -1,6 +1,5 @@
 type Query {
   latestTweets: [Tweet]!
-  timeSince: Int!
 }
 
 type Tweet {
