@@ -1,0 +1,6 @@
+dogetweet.seanaye.ca {
+  route /* {
+    reverse_proxy doge:8080
+  }
+}
+
