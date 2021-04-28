@@ -16,7 +16,7 @@ dependencies {
 	implementation 'com.graphql-java:graphql-java:11.0'
 	implementation 'com.graphql-java:graphql-java-spring-boot-starter-webmvc:1.0'
 	implementation 'com.google.guava:guava:26.0-jre'
-	implementation 'com.github.redouane59.twitter:twittered'
+	implementation 'com.github.redouane59.twitter:twittered:1.22'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
@@ -24,3 +24,4 @@ dependencies {
 test {
 	useJUnitPlatform()
 }
+
