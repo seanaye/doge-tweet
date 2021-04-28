@@ -10,12 +10,8 @@ type Tweet {
   retweetCount: Int!
   likeCount: Int!
   replyCount: Int!
-  attachments: Attachment
 }
 
-type Attachment {
-  media_keys: [String]!
-}
 
 type User {
   id: ID!
