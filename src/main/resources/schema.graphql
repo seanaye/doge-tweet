@@ -1,0 +1,27 @@
+type Query {
+  latestTweets: [Tweet]!
+  timeSince: Int!
+}
+
+type Tweet {
+  id: ID!
+  text: String!
+  user: User!
+  retweetCount: Int!
+  likeCount: Int!
+  replyCount: Int!
+  attachments: Attachment
+}
+
+type Attachment {
+  media_keys: [String]!
+}
+
+type User {
+  id: ID!
+  name: String!
+  displayedName: String!
+  followersCount: Int!
+  followingCount: Int!
+  tweetCount: Int!
+}
