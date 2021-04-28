@@ -2,6 +2,7 @@ version: "3"
 services:
   doge:
     build: .
+    image: seanaye/dogetweet
   caddy:
     image: caddy:alpine
     ports:
